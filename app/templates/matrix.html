@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}SPARTA Matrix - Orbital Threat Model{% endblock %}
+{% block content %}
+  <div class="section-heading">
+    <h1>{{ "SPARTA matrix - " + system.name if system else "SPARTA reference matrix" }}</h1>
+    {% if system %}<a href="{{ url_for('systems.system_detail', system_id=system.id) }}" class="btn btn--secondary">Back to system</a>{% endif %}
+  </div>
+  <p class="muted">
+    Nine tactics, left to right in the order an intrusion typically unfolds.
+    {% if system %}
+      Cells are highlighted where this system's declared segments overlap a technique; dimmed cells are
+      still real SPARTA techniques, just not flagged as relevant given what you told us about this system.
+    {% else %}
+      This is the full reference taxonomy with no system context - create a system to see a filtered,
+      severity-ranked view.
+    {% endif %}
+  </p>
+
+  <div class="panel">
+    <div class="matrix-scroll">
+      <div class="matrix-grid">
+        {% for tactic in tactics %}
+          <div class="matrix-col">
+            <div class="matrix-col__head">
+              <span class="id">{{ tactic.id }}</span>
+              {{ tactic.name }}
+            </div>
+            {% for tech in tactic.non_sub_techniques %}
+              {% set finding = findings_by_technique.get(tech.id) %}
+              {% set active = (system is none) or finding %}
+              <a href="{{ url_for('matrix.technique_detail', technique_id=tech.id) }}"
+                 class="matrix-cell {{ 'matrix-cell--' + finding.severity if finding else '' }} {{ '' if active else 'matrix-cell--inactive' }}">
+                <span class="id">{{ tech.id }}</span>{{ tech.name }}
+              </a>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

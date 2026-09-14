@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Orbital Threat Model{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="sidebar__mark" aria-hidden="true">&#9737;</span>
+        <div>
+          <div class="sidebar__title">Orbital Threat Model</div>
+          <div class="sidebar__subtitle">SPARTA-based analysis</div>
+        </div>
+      </div>
+      <nav class="sidebar__nav">
+        <a href="{{ url_for('main.dashboard') }}" class="{{ 'is-active' if request.endpoint == 'main.dashboard' }}">Dashboard</a>
+        <a href="{{ url_for('systems.new_system') }}" class="{{ 'is-active' if request.endpoint in ['systems.new_system','systems.edit_system','systems.system_detail'] }}">Systems</a>
+        <a href="{{ url_for('matrix.reference_matrix') }}" class="{{ 'is-active' if request.endpoint and request.endpoint.startswith('matrix.') }}">SPARTA Matrix</a>
+        <a href="{{ url_for('compliance.overview') }}" class="{{ 'is-active' if request.endpoint and request.endpoint.startswith('compliance.') }}">EU Governance</a>
+      </nav>
+      <div class="sidebar__footer">
+        <p>Threat taxonomy: SPARTA v3.x, The Aerospace Corporation.</p>
+        <p>Not affiliated with The Aerospace Corporation or the European Commission. See <a href="{{ url_for('main.dashboard') }}#provenance">data provenance</a>.</p>
+      </div>
+    </aside>
+
+    <main class="content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-stack">
+            {% for category, message in messages %}
+              <div class="flash flash--{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

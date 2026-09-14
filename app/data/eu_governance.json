@@ -1,0 +1,112 @@
+{
+  "frameworks": [
+    {
+      "id": "EUSA",
+      "name": "EU Space Act (proposed Regulation)",
+      "status": "PROPOSAL - not yet enacted. Published by the European Commission on 25 June 2025 as COM(2025) 335 final. As of this dataset's last review, the proposal was in trilogue negotiation between the Commission, Council and European Parliament, with the Council Presidency compromise text dated December 2025 and Parliament rapporteur draft diverging on cybersecurity scope. Article numbers below are as cited in the Commission proposal and may shift before final adoption.",
+      "issuing_body": "European Commission / European Parliament / Council of the EU",
+      "scope_note": "Applies to EU and non-EU entities operating space services in the EU (satellite operators, launch providers, electronic communications providers serving EU customers), scaled by company size and risk profile.",
+      "pillars": [
+        {
+          "name": "Safety",
+          "summary": "Space object tracking and debris mitigation to preserve safe, uninterrupted access to space."
+        },
+        {
+          "name": "Resilience",
+          "summary": "Cybersecurity and operational-resilience requirements for space infrastructure (the pillar most relevant to threat modeling)."
+        },
+        {
+          "name": "Sustainability",
+          "summary": "Environmental footprint calculation and declaration across the mission lifecycle."
+        }
+      ],
+      "resilience_requirements": [
+        {
+          "theme": "All-hazards risk management",
+          "article_refs": ["75", "76", "77", "78"],
+          "summary": "Operators must identify and assess all sources of risk (cyber and physical), regularly review them, and remediate identified vulnerabilities across the satellite lifecycle."
+        },
+        {
+          "theme": "Asset management & access control",
+          "article_refs": ["76-95 (chapter range cited by multiple sources)"],
+          "summary": "Maintain policies for categorizing and managing information/assets by criticality; implement identity management and access controls restricting physical and logical access to critical assets."
+        },
+        {
+          "theme": "Encryption",
+          "article_refs": ["76-95 (chapter range cited by multiple sources)"],
+          "summary": "Protect TT&C, payload and inter-satellite links with cryptographic protections; secure key management."
+        },
+        {
+          "theme": "Physical resilience",
+          "article_refs": ["76-95 (chapter range cited by multiple sources)"],
+          "summary": "Physically segregate critical assets and implement physical resilience measures for ground infrastructure."
+        },
+        {
+          "theme": "Testing, incl. Threat-Led Penetration Testing (TLPT)",
+          "article_refs": ["cited in Commission proposal and Council compromise text"],
+          "summary": "Mandatory security testing before launch (or before first batch launch for constellations) and at least every three years thereafter."
+        },
+        {
+          "theme": "Incident detection, response & regulatory notification",
+          "article_refs": ["93"],
+          "summary": "Establish incident detection/prevention mechanisms; report significant incidents, potentially to multiple authorities (EUSPA, Member State competent authority, and CSIRTs/competent bodies under NIS2), which stakeholders (ECSO, ENISA Advisory Group) have flagged as a coordination burden pending a proposed single-reporting-point fix."
+        },
+        {
+          "theme": "Supply chain risk management",
+          "article_refs": ["cited in Commission proposal"],
+          "summary": "Establish a supply chain risk management framework to limit cyber risk introduced through suppliers and integrators."
+        },
+        {
+          "theme": "Relationship to NIS2 / CER",
+          "article_refs": ["75", "75a (Council text)"],
+          "summary": "Commission proposal treats the Space Act's cybersecurity rules as lex specialis, taking precedence over overlapping NIS2 obligations for space operators; the Council's December 2025 compromise instead frames it as 'without prejudice' to NIS2, aiming to keep NIS2 primacy for major operators already in scope and apply Space Act-specific rules mainly to smaller/non-EU operators. This point was still contested as of the most recent negotiating texts reviewed."
+        },
+        {
+          "theme": "Union Space Resilience Network (EUSRN)",
+          "article_refs": ["cited in Commission proposal"],
+          "summary": "A cooperation network between the Commission, EUSPA and national competent authorities for monitoring and handling significant cyber incidents and aligning resilience measures with other EU cybersecurity frameworks."
+        }
+      ],
+      "other_obligations": [
+        "Prior authorization from a Member State competent authority (or the Commission for Union-owned assets); non-EU operators need an EU-based legal representative.",
+        "Entry in the Union Register of Space Objects (URSO).",
+        "Environmental Footprint Declaration across design, manufacturing, and operations (Article 96, sustainability pillar - not a cybersecurity control)."
+      ],
+      "sources": [
+        "https://defence-industry-space.ec.europa.eu/eu-space-act_en",
+        "https://www.skadden.com/insights/publications/2025/07/the-eus-new-cybersecurity-law-for-the-space-sector",
+        "https://www.insideglobaltech.com/2025/07/18/the-european-commission-announces-a-proposal-for-the-first-eu-space-act/",
+        "https://www.hoganlovells.com/en/publications/the-eu-space-act-proposal-in-the-legislative-process-cybersecurity-market-access-and-implications",
+        "https://www.hannessnellman.com/news-and-views/blog/the-eu-space-act-and-the-cybersecurity-relationship-with-nis2/",
+        "https://accesspartnership.com/opinion/securing-cyberspace-new-cyber-requirements-eu-space-act/",
+        "https://www.loyensloeff.com/insights/news--events/news/eu-space-act-a-new-regulatory-orbit-for-operators/",
+        "https://cms.law/en/deu/legal-updates/the-eu-space-act-on-a-mission-for-regulation",
+        "https://www.european-space-act.com/"
+      ]
+    },
+    {
+      "id": "NIS2",
+      "name": "NIS2 Directive (EU) 2022/2555",
+      "status": "IN FORCE. Adopted 2022; Member States were required to transpose it into national law by 17 October 2024 (transposition completion varies by Member State).",
+      "issuing_body": "European Parliament and Council of the EU",
+      "scope_note": "Already-binding baseline cybersecurity law for 'essential' and 'important' entities across many sectors. Space-sector operators that qualify as essential/important entities are already subject to NIS2's risk-management and incident-reporting duties independent of whether the EU Space Act is finalized.",
+      "resilience_requirements": [
+        {
+          "theme": "Cybersecurity risk-management measures",
+          "article_refs": ["21"],
+          "summary": "Requires policies on risk analysis, incident handling, business continuity, supply chain security, security in system acquisition/development/maintenance, and use of cryptography, among other measures."
+        },
+        {
+          "theme": "Incident reporting",
+          "article_refs": ["23"],
+          "summary": "Early warning within 24 hours of becoming aware of a significant incident, a full notification within 72 hours, and a final report within one month, to the competent CSIRT/authority."
+        }
+      ],
+      "sources": [
+        "https://www.loyensloeff.com/insights/news--events/news/eu-space-act-a-new-regulatory-orbit-for-operators/",
+        "https://www.hannessnellman.com/news-and-views/blog/the-eu-space-act-and-the-cybersecurity-relationship-with-nis2/"
+      ]
+    }
+  ],
+  "dataset_notes": "This file summarizes publicly reported provisions of the EU Space Act proposal and the in-force NIS2 Directive as understood from the cited secondary sources (law-firm and industry analyses of the legislative texts), not from a direct read of the consolidated legal text. The Space Act is a moving legislative target: treat article numbers and the NIS2/Space Act interaction as indicative, verify against the current consolidated text (or qualified legal counsel) before using this for a real compliance filing, and re-run the sync step periodically."
+}

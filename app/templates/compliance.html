@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}EU Governance - Orbital Threat Model{% endblock %}
+{% block content %}
+  <div class="section-heading">
+    <h1>{{ "EU governance - " + system.name if system else "EU space cybersecurity governance" }}</h1>
+    {% if system %}<a href="{{ url_for('systems.system_detail', system_id=system.id) }}" class="btn btn--secondary">Back to system</a>{% endif %}
+  </div>
+
+  {% for framework in data.frameworks %}
+    <div class="panel">
+      <div class="section-heading">
+        <h2>{{ framework.name }}</h2>
+        <span class="badge">{{ "IN FORCE" if framework.status.startswith("IN FORCE") else "PROPOSAL" }}</span>
+      </div>
+      <p class="muted" style="font-size:13px;">{{ framework.status }}</p>
+      <p>{{ framework.scope_note }}</p>
+
+      {% if framework.pillars %}
+        <div class="badge-row">
+          {% for p in framework.pillars %}<span class="badge">{{ p.name }}</span>{% endfor %}
+        </div>
+      {% endif %}
+
+      <table>
+        <thead><tr><th>Requirement theme</th><th>Article ref(s)</th><th>Summary</th>{% if system %}<th>Status for this system</th>{% endif %}</tr></thead>
+        <tbody>
+        {% for req in framework.resilience_requirements %}
+          <tr>
+            <td>{{ req.theme }}</td>
+            <td class="mono muted">{{ req.article_refs | join(", ") }}</td>
+            <td class="muted">{{ req.summary }}</td>
+            {% if system %}
+              {% set verdict = verdicts.get(req.theme, "not_assessed") %}
+              <td><span class="chip chip--{{ verdict }}">{{ verdict.replace("_", " ") }}</span></td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+      {% if framework.other_obligations %}
+        <p class="muted" style="font-size:13px; margin-top:10px;"><strong>Also note:</strong>
+          {{ framework.other_obligations | join(" · ") }}</p>
+      {% endif %}
+
+      <details style="margin-top:10px;">
+        <summary class="muted" style="cursor:pointer; font-size:13px;">Sources</summary>
+        <ul class="muted" style="font-size:12.5px;">
+          {% for src in framework.sources %}<li><a href="{{ src }}">{{ src }}</a></li>{% endfor %}
+        </ul>
+      </details>
+    </div>
+  {% endfor %}
+
+  <div class="panel">
+    <p class="muted" style="font-size:12.5px;">{{ data.dataset_notes }}</p>
+  </div>
+{% endblock %}

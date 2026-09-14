@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Report - {{ system.name }}{% endblock %}
+{% block content %}
+  <div class="no-print" style="margin-bottom:16px;">
+    <button type="button" onclick="window.print()" class="btn">Print / save as PDF</button>
+    <a href="{{ url_for('systems.system_detail', system_id=system.id) }}" class="btn btn--secondary">Back</a>
+  </div>
+
+  <h1>Threat model &amp; EU compliance summary</h1>
+  <p class="muted">{{ system.name }} - generated {{ generated_at.strftime("%Y-%m-%d %H:%M UTC") }}</p>
+
+  <div class="panel">
+    <h2>System</h2>
+    <p><strong>Mission type:</strong> {{ system.mission_type or "unspecified" }}</p>
+    <p><strong>Segments:</strong> {{ system.segments | join(", ") }}</p>
+    {% if system.description %}<p><strong>Summary:</strong> {{ system.description }}</p>{% endif %}
+  </div>
+
+  <div class="panel">
+    <h2>SPARTA findings ({{ findings | length }})</h2>
+    <table>
+      <thead><tr><th>ID</th><th>Technique</th><th>Tactic</th><th>Severity</th><th>Status</th></tr></thead>
+      <tbody>
+      {% for f in findings %}
+        <tr>
+          <td class="mono">{{ f.technique_id }}</td>
+          <td>{{ f.technique.name }}</td>
+          <td class="muted">{{ f.technique.tactic.name }}</td>
+          <td><span class="chip chip--{{ f.severity }}">{{ f.severity }}</span></td>
+          <td class="muted">{{ f.status }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% for framework in gov_data.frameworks %}
+    <div class="panel">
+      <h2>{{ framework.name }}</h2>
+      <p class="muted" style="font-size:12.5px;">{{ framework.status }}</p>
+      <table>
+        <thead><tr><th>Requirement</th><th>Status for this system</th></tr></thead>
+        <tbody>
+        {% for req in framework.resilience_requirements %}
+          {% set verdict = verdicts.get(req.theme, "not_assessed") %}
+          <tr>
+            <td>{{ req.theme }}</td>
+            <td><span class="chip chip--{{ verdict }}">{{ verdict.replace("_", " ") }}</span></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endfor %}
+
+  <p class="muted" style="font-size:12px;">
+    This report is a working analyst artifact generated from a heuristic engine and public taxonomy
+    data. It is not a certified compliance filing or a substitute for legal review - see the EU
+    Governance page for full source citations and status caveats.
+  </p>
+{% endblock %}

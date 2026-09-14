@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ technique.id }} - Orbital Threat Model{% endblock %}
+{% block content %}
+  <a href="{{ url_for('matrix.reference_matrix') }}" class="btn btn--secondary" style="margin-bottom:16px;">&larr; Matrix</a>
+
+  <div class="panel panel--ticked">
+    <span class="mono muted">{{ technique.id }}</span>
+    <h1>{{ technique.name }}</h1>
+    <div class="badge-row">
+      <span class="badge">{{ technique.tactic.name }} ({{ technique.tactic.id }})</span>
+      {% for seg in technique.segments %}<span class="badge">{{ seg }}</span>{% endfor %}
+    </div>
+    <p>{{ technique.description }}</p>
+    <p class="muted" style="font-size:12.5px;">
+      Source: <a href="{{ technique.source_url }}">{{ technique.source_url }}</a>
+      (The Aerospace Corporation, SPARTA framework)
+    </p>
+  </div>
+
+  {% if sub_techniques %}
+    <div class="panel">
+      <h2>Sub-techniques</h2>
+      <table>
+        <thead><tr><th>ID</th><th>Name</th><th>Description</th></tr></thead>
+        <tbody>
+        {% for sub in sub_techniques %}
+          <tr>
+            <td class="mono">{{ sub.id }}</td>
+            <td>{{ sub.name }}</td>
+            <td class="muted">{{ sub.description }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+
+  <div class="panel">
+    <h2>Countermeasures</h2>
+    <p class="muted">
+      SPARTA's countermeasure-to-technique mapping is maintained in the official
+      <a href="https://sparta.aerospace.org/countermeasures">SPARTA Countermeasure Mapper</a>, which this
+      tool does not mirror at technique-level granularity (see README "Known limitations"). Browse the
+      countermeasure catalog on the official site for NIST SP 800-53 and ISO/IEC 27001-mapped controls
+      relevant to this technique.
+    </p>
+  </div>
+{% endblock %}

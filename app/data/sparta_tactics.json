@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ST0001",
+    "shortname": "reconnaissance",
+    "name": "Reconnaissance",
+    "description": "Threat actor is trying to gather information they can use to plan future operations.",
+    "order": 1,
+    "source_url": "https://sparta.aerospace.org/tactic/ST0001"
+  },
+  {
+    "id": "ST0002",
+    "shortname": "resource-development",
+    "name": "Resource Development",
+    "description": "Threat actor is trying to establish resources they can use to support operations.",
+    "order": 2,
+    "source_url": "https://sparta.aerospace.org/tactic/ST0002"
+  },
+  {
+    "id": "ST0003",
+    "shortname": "initial-access",
+    "name": "Initial Access",
+    "description": "Threat actor is trying to get point of presence/command execution on the spacecraft or hosted payload.",
+    "order": 3,
+    "source_url": "https://sparta.aerospace.org/tactic/ST0003"
+  },
+  {
+    "id": "ST0004",
+    "shortname": "execution",
+    "name": "Execution",
+    "description": "Threat actor is trying to execute malicious code on the spacecraft.",
+    "order": 4,
+    "source_url": "https://sparta.aerospace.org/tactic/ST0004"
+  },
+  {
+    "id": "ST0005",
+    "shortname": "persistence",
+    "name": "Persistence",
+    "description": "Threat actor is trying to maintain their foothold/access to command/execute code on the spacecraft.",
+    "order": 5,
+    "source_url": "https://sparta.aerospace.org/tactic/ST0005"
+  },
+  {
+    "id": "ST0006",
+    "shortname": "defense-evasion",
+    "name": "Defense Evasion",
+    "description": "Threat actor is trying to avoid being detected.",
+    "order": 6,
+    "source_url": "https://sparta.aerospace.org/tactic/ST0006"
+  },
+  {
+    "id": "ST0007",
+    "shortname": "lateral-movement",
+    "name": "Lateral Movement",
+    "description": "Threat actor is trying to move through/across sub-systems and/or payloads of the spacecraft.",
+    "order": 7,
+    "source_url": "https://sparta.aerospace.org/tactic/ST0007"
+  },
+  {
+    "id": "ST0008",
+    "shortname": "exfiltration",
+    "name": "Exfiltration",
+    "description": "Threat actor is trying to steal information.",
+    "order": 8,
+    "source_url": "https://sparta.aerospace.org/tactic/ST0008"
+  },
+  {
+    "id": "ST0009",
+    "shortname": "impact",
+    "name": "Impact",
+    "description": "Adversary activity that directly produces or sustains an effect against the affected system, payload, subsystem, or mission function.",
+    "order": 9,
+    "source_url": "https://sparta.aerospace.org/tactic/ST0009"
+  }
+]

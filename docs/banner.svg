@@ -1,0 +1,50 @@
+<svg viewBox="0 0 1200 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Orbital Threat Model">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c1826"/>
+      <stop offset="100%" stop-color="#101f33"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#f5a623" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#f5a623" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="260" fill="url(#bg)"/>
+
+  <!-- faint blueprint grid -->
+  <g stroke="#1a2f47" stroke-width="1">
+    <line x1="0" y1="40" x2="1200" y2="40"/>
+    <line x1="0" y1="220" x2="1200" y2="220"/>
+    <line x1="120" y1="0" x2="120" y2="260"/>
+    <line x1="1080" y1="0" x2="1080" y2="260"/>
+  </g>
+
+  <!-- orbital paths -->
+  <g fill="none" stroke-width="1.4">
+    <ellipse cx="330" cy="130" rx="260" ry="92" stroke="#24405c" transform="rotate(-8 330 130)"/>
+    <ellipse cx="330" cy="130" rx="200" ry="66" stroke="#2c4d6e" transform="rotate(-8 330 130)"/>
+  </g>
+  <circle cx="330" cy="130" r="90" fill="url(#glow)"/>
+
+  <!-- "planet" -->
+  <circle cx="330" cy="130" r="15" fill="#15283f" stroke="#f5a623" stroke-width="2"/>
+
+  <!-- satellites on the orbit paths -->
+  <circle cx="580" cy="95" r="5" fill="#6fa8dc"/>
+  <circle cx="98" cy="176" r="5" fill="#6fa8dc"/>
+  <circle cx="486" cy="182" r="6" fill="#f5a623"/>
+
+  <!-- corner ticks, matching the app's panel style -->
+  <g stroke="#f5a623" stroke-width="2" fill="none">
+    <path d="M 24 24 L 24 44 M 24 24 L 44 24"/>
+    <path d="M 1176 236 L 1176 216 M 1176 236 L 1156 236"/>
+  </g>
+
+  <!-- wordmark -->
+  <g font-family="-apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+    <text x="650" y="112" fill="#eaf2fb" font-size="42" font-weight="700" letter-spacing="-0.5">Orbital Threat Model</text>
+    <text x="650" y="144" fill="#8fa8c2" font-size="16">SPARTA-based threat modeling for space &amp; satellite systems</text>
+    <text x="650" y="180" fill="#8fa8c2" font-size="13" font-family="ui-monospace, SF Mono, Consolas, monospace">9 tactics &#183; 214 techniques &#183; 268 countermeasures &#183; EU governance</text>
+  </g>
+</svg>

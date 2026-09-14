@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - Orbital Threat Model{% endblock %}
+{% block content %}
+  <div class="section-heading">
+    <h1>Dashboard</h1>
+    <a href="{{ url_for('systems.new_system') }}" class="btn">New system</a>
+  </div>
+
+  <div class="stat-grid">
+    <div class="panel panel--ticked">
+      <div class="panel__title">Systems modeled</div>
+      <div class="panel__value">{{ stats.system_count }}</div>
+    </div>
+    <div class="panel panel--ticked">
+      <div class="panel__title">SPARTA tactics</div>
+      <div class="panel__value">{{ stats.tactic_count }}</div>
+    </div>
+    <div class="panel panel--ticked">
+      <div class="panel__title">SPARTA techniques loaded</div>
+      <div class="panel__value">{{ stats.technique_count }}</div>
+    </div>
+    <div class="panel panel--ticked">
+      <div class="panel__title">Open findings</div>
+      <div class="panel__value">{{ stats.open_findings }}</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Systems</h2>
+    {% if systems %}
+      <table>
+        <thead><tr><th>Name</th><th>Mission type</th><th>Segments</th><th>Updated</th><th></th></tr></thead>
+        <tbody>
+        {% for s in systems %}
+          <tr>
+            <td><a href="{{ url_for('systems.system_detail', system_id=s.id) }}">{{ s.name }}</a></td>
+            <td class="muted">{{ s.mission_type or "-" }}</td>
+            <td class="muted">{{ s.segments | join(", ") or "-" }}</td>
+            <td class="muted">{{ s.updated_at.strftime("%Y-%m-%d %H:%M UTC") }}</td>
+            <td><a href="{{ url_for('systems.edit_system', system_id=s.id) }}">Edit</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="muted">No systems yet. Create one to generate its SPARTA-based threat matrix.</p>
+    {% endif %}
+  </div>
+
+  <div class="panel" id="provenance">
+    <h2>Data provenance</h2>
+    <p class="muted">
+      Tactics and techniques come from The Aerospace Corporation's public SPARTA framework
+      (<a href="https://sparta.aerospace.org/">sparta.aerospace.org</a>), via the CC0-licensed
+      MISP galaxy dataset. EU governance content summarizes public reporting on the proposed
+      EU Space Act and the in-force NIS2 Directive - see the
+      <a href="{{ url_for('compliance.overview') }}">EU Governance</a> page for full source links
+      and legal-status notes. This tool does not modify or reinterpret SPARTA technique text;
+      segment tags and severity heuristics are this tool's own additions, clearly separated from
+      the source text, and are a starting point for analyst review rather than a certified result.
+    </p>
+  </div>
+{% endblock %}

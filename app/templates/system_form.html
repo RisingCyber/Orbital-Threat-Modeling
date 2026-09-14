@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}{{ "Edit" if system else "New" }} system - Orbital Threat Model{% endblock %}
+{% block content %}
+  <h1>{{ "Edit " + system.name if system else "New system" }}</h1>
+  <p class="muted">Describe the system at a level a threat-modeling session would start from. Segment
+    selections drive which SPARTA techniques get suggested; the checkboxes below refine severity.</p>
+
+  <form method="post" class="panel" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="field">
+      {{ form.name.label }}
+      {{ form.name(type="text", placeholder="e.g. Aurora-3 Earth Observation Constellation") }}
+      {% for err in form.name.errors %}<div class="form-errors">{{ err }}</div>{% endfor %}
+    </div>
+
+    <div class="field">
+      {{ form.mission_type.label }}
+      {{ form.mission_type() }}
+    </div>
+
+    <div class="field">
+      {{ form.description.label }}
+      {{ form.description(placeholder="Bus/payload summary, ground architecture, links, third parties involved...") }}
+    </div>
+
+    <fieldset>
+      <legend>{{ form.segments.label }}</legend>
+      <div class="checkbox-grid">
+        {% for subfield in form.segments %}
+          <label class="checkbox-row">{{ subfield() }} {{ subfield.label.text }}</label>
+        {% endfor %}
+      </div>
+      {% for err in form.segments.errors %}<div class="form-errors">{{ err }}</div>{% endfor %}
+    </fieldset>
+
+    <fieldset>
+      <legend>Risk context</legend>
+      <div class="checkbox-grid">
+        <label class="checkbox-row">{{ form.uses_third_party_auth() }} {{ form.uses_third_party_auth.label.text }}</label>
+        <label class="checkbox-row">{{ form.uses_commercial_ground_station() }} {{ form.uses_commercial_ground_station.label.text }}</label>
+        <label class="checkbox-row">{{ form.has_encrypted_tt_and_c() }} {{ form.has_encrypted_tt_and_c.label.text }}</label>
+        <label class="checkbox-row">{{ form.has_supply_chain_program() }} {{ form.has_supply_chain_program.label.text }}</label>
+        <label class="checkbox-row">{{ form.is_constellation() }} {{ form.is_constellation.label.text }}</label>
+        <label class="checkbox-row">{{ form.is_nis2_in_scope() }} {{ form.is_nis2_in_scope.label.text }}</label>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="btn">{{ "Save changes" if system else "Create and generate threat matrix" }}</button>
+    <a href="{{ url_for('main.dashboard') }}" class="btn btn--secondary">Cancel</a>
+  </form>
+{% endblock %}
