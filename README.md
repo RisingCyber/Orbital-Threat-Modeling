@@ -87,8 +87,7 @@ nothing here is generated prose standing in for analysis.
 <tr><td align="center"><i>EU governance checklist - "addressed" / "gap" / "not assessed" per requirement, never a guess dressed up as a pass.</i></td></tr>
 </table>
 
-These are real screenshots of the running app (rendered headless, not
-mockups).
+Some screenshots of the running app - ESA's Aurora Space Earth Observation Constellation Sats.
 
 ## Quickstart
 
@@ -165,7 +164,7 @@ app, not bolted on after:
 | Oversized requests | `MAX_CONTENT_LENGTH` caps request bodies at 2MB. |
 | AI hallucination reaching the UI | `app/ai_assist.py` regex-scans its own model output for anything that looks like a technique ID and discards the narrative if it references an ID the deterministic engine didn't already select. The model can describe a finding; it cannot invent one. |
 
-If you find a gap in this table, treat it as a bug.
+If you find a gap in this table, please treat it as a bug.
 
 ## Known limitations
 
