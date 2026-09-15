@@ -171,9 +171,7 @@ If you find a gap in this table, please treat it as a bug.
 - SPARTA's official countermeasure-to-technique mapping isn't mirrored at
   technique-level granularity - the source data doesn't expose that edge
   directly, and building an unofficial one risked fabricating a mapping
-  SPARTA itself hasn't published. Technique pages link to the real
-  [Countermeasure Mapper](https://sparta.aerospace.org/countermeasures)
-  instead.
+  SPARTA itself hasn't published. 
 - The `segments` heuristic is a first pass, not ground truth.
 - EU governance article numbers are a moving target while the Space Act is
   in trilogue - the dataset says so explicitly rather than picking one
